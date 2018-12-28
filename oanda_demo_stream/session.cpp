@@ -193,33 +193,25 @@ std::size_t session::on_chunk_body(
 
 	// move timer
 	heartbeat_timer_.expires_at(cro::steady_clock::now() + cro::seconds(TIMEOUT_SECONDS));
-
-	try {
-		// Oanda puts new lines "}/n" at the END of chunks.
-		// Therefore, these strings must end with "}\n"
-		beast::string_view chk = body.substr(body.length() - 2, 2),
-			end = "}\n";
-		if (chk != end)
-		{
-			incomplete_chunk_ += (std::string)body;
-			return body.length();
-		}
-
-		// complete
-		if (incomplete_chunk_.length()) {
-			std::cout << incomplete_chunk_;
-			incomplete_chunk_ = ""; // this must be reset when this is spent
-		}
-		std::cout << body;
-		std::cout << "--------------------------------" << std::endl;
+	
+	// Oanda puts new lines "}/n" at the END of chunks.
+	// Therefore, these strings must end with "}\n"
+	beast::string_view chk = body.substr(body.length() - 2, 2),
+		end = "}\n";
+	if (chk != end)
+	{
+		incomplete_chunk_ += (std::string)body;
 		return body.length();
 	}
-	catch (std::exception const& e)
-	{
-		std::cerr << "Error: " << e.what() << std::endl;
-		exit(9001);
-	}
 
+	// complete
+	if (incomplete_chunk_.length()) {
+		std::cout << incomplete_chunk_;
+		incomplete_chunk_ = ""; // this must be reset when this is spent
+	}
+	std::cout << body;
+	std::cout << "--------------------------------" << std::endl;
+	return body.length();
 }
 
 
