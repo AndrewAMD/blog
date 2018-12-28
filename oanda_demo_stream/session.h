@@ -39,9 +39,7 @@ class session : public std::enable_shared_from_this<session>
 	ssl::stream<tcp::socket> stream_;
 	beast::flat_buffer buffer_; // (Must persist between reads)
 	http::request<http::empty_body> req_;
-	//http::response<http::string_body> res_;
 	http::response_parser<http::empty_body> par_;
-	//http::response_parser<http::string_body> par_; // TODO: how to keep buffer empty??
 	asio::steady_timer heartbeat_timer_;
 	std::string incomplete_chunk_;
 	bool is_stopped_;
@@ -71,7 +69,6 @@ public:
 		error_code& ec);            // May be set by the callback to indicate an error
 	
 	// https://github.com/aerilon/bpistats/blob/2c53509cea3a84d87c0ae97c3622c6175fe5fd8c/src/network_session.hpp#L73
-	// XXX al -
 	// boost::beast::http::response_parser::on_chunk_cb takes a *reference*
 	// to a callback, so we have to manage its lifetime manually. This is a
 	// *major* pain :-/
