@@ -60,7 +60,7 @@ int main(){
 	
 	// read loop
 	int i = 0; // token index
-	int field_index = 0; // 0=close, 1=max, 2=min, 3=open
+	int field_index = 0; // 0=close, 1=max, 2=min, 3=open, 4=timestamp
 	int num_entries = 0;
 	for( 
 	;
@@ -128,10 +128,4 @@ int main(){
 	return 0;
 	
 }
-
-
-
-
-
-
 
