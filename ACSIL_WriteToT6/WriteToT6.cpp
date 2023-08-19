@@ -58,12 +58,6 @@ SCString actual_filename(const SCString& base_filename, int split_id) {
 }
 
 
-//double convertTime(double t32)
-//{
-//	return (double)t32 / (24. * 60. * 60.) + 25569.; // 25569. = DATE(1.1.1970 00:00)
-//}
-
-
 #define printf ___PRINTF_IS_BANNED___
 
 template <typename... Types>
