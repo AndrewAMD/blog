@@ -127,7 +127,7 @@ SCSFExport scsf_WriteBarDataToT6File(SCStudyInterfaceRef sc)
 		//Input_Separator.SetCustomInputStrings("Comma;Tab");
 		//Input_Separator.SetCustomInputIndex(0);
 
-		sc.TextInputName = "File Path";
+		sc.TextInputName = "Filename Template (C:\\folder\\ES.t6)";
 
 		Input_FileType.Name = "Zorro History File Type";
 		Input_FileType.SetDescription("Set to TICK (*.t1), TICK w/ vol (*.t2), or OHLC BAR (*.t6)");
