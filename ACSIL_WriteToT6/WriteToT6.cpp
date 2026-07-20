@@ -74,7 +74,7 @@ void write_to_file(SCStudyInterfaceRef sc, const SCString& base_filename, int sp
 	sc.OpenFile(fn, filemode, h);
 	std::string out = upOos->str();
 	unsigned int bytes_written = 0;
-	sc.WriteFile(h, out.data(), out.length(), &bytes_written);
+	sc.WriteFile(h, out.data(), (int)out.length(), &bytes_written);
 	sc.CloseFile(h);
 	print_to_log(sc, 1, "Done.");
 
